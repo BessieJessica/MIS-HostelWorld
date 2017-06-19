@@ -1,0 +1,377 @@
+/**
+ * Created by L.H.S on 2017/1/27.
+ */
+
+body {
+    background: url("../image/home_bg.png");
+}
+
+@media screen and (min-width: 1280px) {
+    body {
+        background: url("../image/home_bg.png") no-repeat;
+        background-size: 100%;
+    }
+}
+
+.center_div {
+    width: 360px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.6);
+    margin: 140px auto;
+    position: relative;
+}
+
+.tab_div {
+    width: 140px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 22px;
+    color: #ebc4b9;
+    text-align: center;
+    position: absolute;
+    left: 20px;
+    top: 0;
+    cursor: pointer;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -o-transition: 0.2s;
+    transition: 0.2s;
+}
+
+.tab_selected,
+.tab_div:hover {
+    color: #f17350;
+    border-bottom: 2px solid #f17350;
+}
+
+.btn {
+    width: 260px;
+    height: 50px;
+    line-height: 50px;
+    background-color: #f17350;
+    color: #fff;
+    text-align: center;
+    font-size: 24px;
+    margin: 20px auto;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+.input_text {
+    width: 255px;
+    height: 50px;
+    padding-left: 5px;
+    font-size: 20px;
+    border: none;
+    outline: none;
+    transition: 0.3s;
+}
+
+.text_area {
+    width: 255px;
+    height: 50px;
+    line-height: 25px;
+    resize: none;
+    font-size: 16px;
+    outline: none;
+    border: none;
+    padding-left: 5px;
+}
+
+.input_text:focus,
+.input_text:hover,
+.text_area:focus,
+.text_area:hover {
+    -webkit-box-shadow: 0 0 7px #eaab6e;
+    -moz-box-shadow: 0 0 7px #eaab6e;
+    box-shadow: 0 0 7px #eaab6e;
+}
+
+.back_div {
+    display: inline;
+    font-size: 18px;
+    color: #d4d1d0;
+    text-align: center;
+    position: absolute;
+    left: 15px;
+    top: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.back_div:hover {
+    color: #5d5d5d;
+}
+
+.textfield {
+    margin: 20px auto;
+    width: 260px;
+    position: relative;
+}
+
+.err_lbl {
+    font-size: 16px;
+    line-height: 50px;
+    color: #f43636;
+    font-weight: 300;
+    position: absolute;
+    right: 5px;
+    top: 0;
+}
+
+.modal_bg {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 110;
+}
+
+.modal {
+    width: 760px;
+    min-height: 430px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    border-radius: 4px;
+    background-color: #f7f2ea;
+    margin: 80px auto;
+    box-shadow: 0 0 7px #F8830C;
+    z-index: 120;
+}
+
+@media screen and (max-width: 770px) {
+    .modal {
+        width: 98%;
+    }
+}
+
+.step_div {
+    width: 490px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.step_div img {
+    width: 490px;
+}
+
+.block_div {
+    margin: 0 auto;
+    width: 550px;
+}
+
+.much_text {
+    width: 550px;
+    margin: 0 auto;
+    font-size: 12px;
+    color: #a7a9a7;
+    border-top: 1px solid #a7a9a7;
+    padding-top: 5px;
+    font-weight: 300;
+}
+
+@media screen and (max-width: 550px) {
+    .block_div {
+        width: 280px;
+    }
+
+    .much_text {
+        width: 370px;
+        margin-top: 20px;
+    }
+}
+
+.left_part {
+    vertical-align: top;
+    display: inline-block;
+}
+
+.sex {
+    margin: 20px auto;
+    width: 260px;
+    font-size: 20px;
+    height: 50px;
+    line-height: 50px;
+    color: #a9a9a9;
+}
+
+input[type="radio"] {
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+.banks_div {
+    margin: 21px auto;
+    width: 260px;
+    border: 1px dashed #979797;
+    font-size: 16px;
+    color: #b4b2b2;
+    line-height: 30px;
+    font-weight: 200;
+}
+
+.each_bank {
+    color: #363434;
+    border-bottom: 1px dashed #979797;
+    position: relative;
+}
+
+.each_bank i {
+    position: absolute;
+    right: -20px;
+    top: 7px;
+    color: #b4b2b2;
+    cursor: pointer;
+}
+
+.each_bank i:hover {
+    color: #363434;
+}
+
+.add_bank {
+    padding-left: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.add_bank:hover {
+    color: #363434;
+}
+
+.bank_text {
+    width: 260px;
+    height: 30px;
+    font-size: 16px;
+    font-weight: 200;
+}
+
+.input_hover_no {
+    width: 260px;
+    height: 30px;
+    font-size: 16px;
+    font-weight: 200;
+    padding-left: 5px;
+    border: none;
+    outline: none;
+    transition: 0.3s;
+}
+
+.step_btn {
+    width: 100px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+    transition: 0.3s;
+    cursor: pointer;
+    background-color: #d4692a;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.step_btn:hover {
+    opacity: 0.7;
+}
+
+.id_div {
+    width: 430px;
+    margin: 10px auto;
+    font-size: 18px;
+    color: #32af32;
+    text-align: center;
+    font-weight: 300;
+}
+
+.id_div span {
+    color: #d22121;
+    font-weight: 400;
+}
+
+.note_div {
+    width: 260px;
+    margin: 0 auto;
+    font-size: 12px;
+    color: #a7a9a7;
+    border-top: 1px solid #a7a9a7;
+    padding-top: 5px;
+    font-weight: 300;
+}
+
+.tip_div {
+    width: 260px;
+    margin: 10px auto;
+    font-size: 16px;
+    color: #a7a9a7;
+    font-weight: 300;
+}
+
+.remind_div {
+    font-size: 16px;
+    color: #f43636;
+    font-weight: 300;
+    width: 100%;
+    text-align: center;
+    margin-top: -10px;
+    display: none;
+}
+
+.remind_div span {
+    color: #363434;
+    font-size: 22px;
+    font-weight: 400;
+}
+
+.describe_div {
+    width: 370px;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 5px;
+    margin-bottom: 20px;
+}
+
+.upload_div {
+    width: 140px;
+    height: 96px;
+    border: 2px dashed #979797;
+    vertical-align: top;
+    display: inline-block;
+    margin-left: 0;
+    position: relative;
+    font-size: 13px;
+    color: #979797;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.upload_div:hover {
+    color: #2a2929;
+    border: 2px dashed #2a2929;
+}
+
+.hr_h {
+    width: 60px;
+    border-style: dashed;
+    margin: 35px auto;
+}
+
+.hr_v {
+    width: 0;
+    height: 40px;
+    border-style: dashed;
+    margin: -55px auto;
+}
+
+.upload_div div {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 8px;
+}

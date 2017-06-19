@@ -1,0 +1,72 @@
+/**
+ * Created by L.H.S on 2017/1/18.
+ */
+
+body {
+    font-family: "PingFang SC", serif;
+}
+
+.nav_bar {
+    width: 100%;
+    height: 50px;
+    background-color: #f17350;
+    color: #fff;
+    font-size: 20px;
+    line-height: 50px;
+}
+
+.logo_div {
+    width: 180px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 30px;
+}
+
+.sub_nav {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 20px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.sub_nav:hover,
+.native {
+    color: #ffe500;
+    font-size: 22px;
+}
+
+.message_div {
+    width: 20px;
+    float: right;
+    font-size: 30px;
+    margin-top: 10px;
+    margin-right: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.message_div:hover {
+    opacity: 0.7;
+}
+
+.message_div img {
+    width: 100%;
+}
+
+.bottom_nav {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 200;
+    margin-top: 90px;
+    background-color: #f17350;
+}
+
+.portrait_img {
+    width: 100%;
+    border-radius: 50%;
+}
