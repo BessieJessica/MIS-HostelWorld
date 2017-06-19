@@ -75,29 +75,36 @@ public class DBConnection {
         return i;
     }
 
+    /**
+     *
+     * @param count
+     * @return
+     */
     public int insertHostelApply(int count) {
-        int i = 2;
+        int i = 13;
         String sql = "insert into hostelapply(id, applyer, phone, email, identity, hostelname, location, " +
-                "description, imgurl, approvalstate, approverId, applyType) " +
-                "values (? , ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
+                "description, approvalstate, approverId, applyType, applyTime) " +
+                "values (? , ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         Connection connection = getConnection();
 
         try {
-//            for (;i<count;i++) {
+            for (;i<count;i++) {
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 preparedStatement.setString(1, i + "");
                 preparedStatement.setString(2, "liu"+i);
-                preparedStatement.setString(3, "13382513875");
+                preparedStatement.setString(3, "13372511775");
                 preparedStatement.setString(4, "352264191@qq.com");
-                preparedStatement.setString(5, "352264191@qq.com");//用来标记城市等级，1/2/3 = 一线/二线发达/二线中等
-                preparedStatement.setString(6, "hostel "+i+" 号加盟店");
-                preparedStatement.setString(7, randomSex());
-                preparedStatement.setString(8, getRandomNum(1, 1000000) + "");
-                preparedStatement.setString(9, "大众会员");
-                preparedStatement.setString(10, 1000 + "");
-                preparedStatement.setString(11, 1000 + "");
+                String tmpCity = getRandomCity();
+                preparedStatement.setString(5, tmpCity.substring(0,1));//用来标记城市等级，1/2/3 = 一线/二线发达/二线中等
+                preparedStatement.setString(6, "hostel加盟店");
+                preparedStatement.setString(7, tmpCity.substring(1));
+                preparedStatement.setString(8, "hostel加盟店诚邀您的光临");
+                preparedStatement.setString(9, "approve");
+                preparedStatement.setString(10, 1000000 + "");
+                preparedStatement.setString(11, "open");
+                preparedStatement.setString(12,randomDate("2010-01-01", "2016-10-01").toString());
                 preparedStatement.executeUpdate();
-//            }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

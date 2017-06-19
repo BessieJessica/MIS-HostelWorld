@@ -12,6 +12,7 @@ public class InjectData {
 
 //        dbConnection.insertUser(1100001);
 
+        dbConnection.insertHostelApply(168);
 
     }
 
