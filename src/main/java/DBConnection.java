@@ -14,6 +14,7 @@ public class DBConnection {
     private static String[] sex = {"男", "女"};
     //10个城市，其中北上广3个城市为一线城市，杭州、南京、厦门为二线发达城市，苏州、武汉、西安、成都为二线中等城市
     private static String[] city = {"北京", "上海", "广州", "杭州", "南京", "厦门", "苏州", "武汉", "西安", "成都"};
+    private static String[] balance={"0","1000"};
 
     private String dbDriver = "com.mysql.jdbc.Driver";
     private String dbUrl = "jdbc:mysql://localhost:3306/HostelWorld?useUnicode=true&characterEncoding=UTF-8";
@@ -69,6 +70,9 @@ public class DBConnection {
 
     }
 
+    /**
+     * 获取hostelInfo中的数据注入hostelRoom
+     */
     public void selectHostelInfo2Room() {
         String sql = "select id, roomcount from hostelinfo";
         Connection connection = getConnection();
@@ -136,6 +140,11 @@ public class DBConnection {
         return i;
     }
 
+    /**
+     * 根据HostelInfo里的数据增加房间
+     * @param hostelid 酒店id
+     * @param roomcount 对应的房间数
+     */
     public void insertHostelRoom(String hostelid, int roomcount) {
         int i = 0;
         int roomId = 101;
@@ -166,7 +175,7 @@ public class DBConnection {
      * @return 最后一条数据id
      */
     public int insertUser(int count) {
-        int i = 1001040;
+        int i = 1000023;
         String sql = "insert into user(id, password, username, phone, email, birth, sex, bankcard, level, balance, point) " +
                 "values (? , ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         Connection connection = getConnection();
@@ -179,12 +188,13 @@ public class DBConnection {
                 preparedStatement.setString(3, "liu" + (i % 1000000));
                 preparedStatement.setString(4, "1");
                 preparedStatement.setString(5, "352264191@qq.com");
-                preparedStatement.setString(6, randomDate("1970-01-01", "2017-05-31").toString());
+                preparedStatement.setString(6, randomDate("1970-01-01", "1999-01-01").toString());
                 preparedStatement.setString(7, randomSex());
                 preparedStatement.setString(8, getRandomNum(1, 1000000) + "");
                 preparedStatement.setString(9, "大众会员");
-                preparedStatement.setString(10, 1000 + "");
-                preparedStatement.setString(11, 1000 + "");
+                String balance = randomBalanceAndPoint();
+                preparedStatement.setString(10,  balance);
+                preparedStatement.setString(11, balance);
                 preparedStatement.executeUpdate();
             }
         } catch (SQLException e) {
@@ -318,6 +328,21 @@ public class DBConnection {
             return sex[0];
         } else {
             return sex[1];
+        }
+    }
+
+    /**
+     * 30%为非会员
+     * 70%会员
+     *
+     * @return
+     */
+    private static String randomBalanceAndPoint(){
+        double x = Math.random();
+        if (x<0.3){
+            return balance[0];
+        }else{
+            return balance[1];
         }
     }
 
