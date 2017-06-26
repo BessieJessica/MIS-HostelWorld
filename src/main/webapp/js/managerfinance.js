@@ -21,7 +21,9 @@ function getBarChart() {
             spans[1].innerHTML = (getSum(datas[0]) + getSum(datas[1])) * 100;
             spans[2].innerHTML = getSum(datas[3]);
 
-            getManagerBar("chartDiv", resp);
+                getManagerBar("chartDiv", resp);
+            getMap("countryMap");
+            getlayeredCitySales("layeredCity");
 
         },
         error: function () {

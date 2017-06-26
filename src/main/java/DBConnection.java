@@ -2,7 +2,9 @@ import org.hibernate.SQLQuery;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.sql.*;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 
@@ -14,7 +16,9 @@ public class DBConnection {
     private static String[] sex = {"男", "女"};
     //10个城市，其中北上广3个城市为一线城市，杭州、南京、厦门为二线发达城市，苏州、武汉、西安、成都为二线中等城市
     private static String[] city = {"北京", "上海", "广州", "杭州", "南京", "厦门", "苏州", "武汉", "西安", "成都"};
-    private static String[] balance={"0","1000"};
+    private static String[] balance = {"0", "1000"};
+    private static String[] checkState = {"checked", "cancel"};
+    private static String[] checkoutPayInfo = {"会员，会员卡支付","会员，现金支付"};
 
     private String dbDriver = "com.mysql.jdbc.Driver";
     private String dbUrl = "jdbc:mysql://localhost:3306/HostelWorld?useUnicode=true&characterEncoding=UTF-8";
@@ -22,6 +26,9 @@ public class DBConnection {
     private String dbPass = "123456";
 
     private static int room_tableId = 1;
+    private static int myorderId = 1076327;//+1.8w
+
+    private static int checkoutId = 48588;
 
 
     public Connection getConnection() {
@@ -70,6 +77,7 @@ public class DBConnection {
 
     }
 
+
     /**
      * 获取hostelInfo中的数据注入hostelRoom
      */
@@ -94,15 +102,76 @@ public class DBConnection {
         }
     }
 
+    /**
+     * 从myorder表中抽取数据
+     * 向checkout表中注入
+     */
+    public void selectMyorderInfo2checkout() throws ParseException {
+        String sql = "select room, ordertime, userId, checkstate from myorder where hostelId=9 and id>148391";
+        Connection connection = getConnection();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            String checkintime ;
+            while (resultSet.next()) {
+                if (resultSet.getString("checkstate").equals("checked")) {
+                    checkintime = resultSet.getString("ordertime");
+                    insertCheckout(resultSet.getString("room"), checkintime, datePlus(checkintime), resultSet.getString("userId"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void insertCheckout(String roomId, String checkintime, String checkouttime, String userId) {
+
+        String sql = "insert into checkout(id, hostelId, roomId, checkintime, checkouttime, totalpay, payinfo, userId) " +
+                "values (?, ?, ?, ?, ?, ?, ?, ?) ";
+        Connection connection = getConnection();
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, checkoutId+"");
+            preparedStatement.setString(2, "9");
+            preparedStatement.setString(3, roomId);
+            preparedStatement.setString(4, checkintime);
+            preparedStatement.setString(5, checkouttime);
+            preparedStatement.setString(6, random(300,600)+"");
+            preparedStatement.setString(7,randomPayInfo());
+            preparedStatement.setString(8, userId);
+            checkoutId++;
+            preparedStatement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 传入String类型的日期，返回+1天的日期
+     * @param startDate
+     * @return
+     * @throws ParseException
+     */
+    public String datePlus(String startDate) throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date start = format.parse(startDate);//构造开始日期
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(start);
+        calendar.add(Calendar.DATE, 1);
+        String T1 = format.format(calendar.getTime());
+//            System.out.println(T1);
+        return T1;
+    }
 
     /**
      * 注入hostelInfo
      *
-     * @param id
-     * @param name
-     * @param location
-     * @param identity
-     * @param ownername
      * @return 一线城市的酒店默认30间房间
      * 二线发达城市的酒店默认20间房间
      * 二线中等城市的酒店默认15间房间
@@ -140,9 +209,71 @@ public class DBConnection {
         return i;
     }
 
+
+    public void selecthostelApply2myOrder() {
+//        String sql = "select id, identity, hostelname, location, applytime from hostelapply";
+        String sql = "select `identity`, hostelname, location, applytime from hostelapply where id=50";
+        Connection connection = getConnection();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+
+                for (int i = 0; i < 4000; i++) {
+                    String date = resultSet.getString("applytime");
+                    int roomId = (int) (100 + Math.random() * 30);
+                    insertMyorder("50", resultSet.getString("hostelname"), resultSet.getString("location"),
+                            roomId + "", randomDate(date, "2017-05-01"));
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     *
+     */
+    public void insertMyorder(String hostelId, String hostelname, String location, String room, String ordertime) {
+        String sql = "insert into myorder(id, userId, hostelId, hostelname, location, room," +
+                " ordertime, pay, phone, username, orderstate, checkstate) values (?,?,?,?,?,?,?,?,?,?,?,?)";
+        Connection connection = getConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, myorderId + "");
+            int userId = (int) (1000021 + Math.random() * 99979);
+            preparedStatement.setString(2, userId + "");
+            preparedStatement.setString(3, hostelId);
+            preparedStatement.setString(4, hostelname);
+            preparedStatement.setString(5, location);
+            preparedStatement.setString(6, room);
+            preparedStatement.setString(7, ordertime);
+            preparedStatement.setString(8, 100 + "");
+            preparedStatement.setString(9, "1");
+            preparedStatement.setString(10, "liu" + (userId - 1000000));
+            preparedStatement.setString(11, "history");
+            preparedStatement.setString(12, randomCheckState());
+            preparedStatement.executeUpdate();
+            myorderId++;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
     /**
      * 根据HostelInfo里的数据增加房间
-     * @param hostelid 酒店id
+     *
+     * @param hostelid  酒店id
      * @param roomcount 对应的房间数
      */
     public void insertHostelRoom(String hostelid, int roomcount) {
@@ -193,7 +324,7 @@ public class DBConnection {
                 preparedStatement.setString(8, getRandomNum(1, 1000000) + "");
                 preparedStatement.setString(9, "大众会员");
                 String balance = randomBalanceAndPoint();
-                preparedStatement.setString(10,  balance);
+                preparedStatement.setString(10, balance);
                 preparedStatement.setString(11, balance);
                 preparedStatement.executeUpdate();
             }
@@ -211,7 +342,7 @@ public class DBConnection {
      * @return 最后一条数据id
      */
     public int insertHostelApply(int count) {
-        int i = 13;
+        int i = 3;
         String sql = "insert into hostelapply(id, applyer, phone, email, identity, hostelname, location, " +
                 "description, approvalstate, approverId, applyType, applyTime) " +
                 "values (? , ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -226,7 +357,7 @@ public class DBConnection {
                 preparedStatement.setString(4, "352264191@qq.com");
                 String tmpCity = getRandomCity();
                 preparedStatement.setString(5, tmpCity.substring(0, 1));//用来标记城市等级，1/2/3 = 一线/二线发达/二线中等
-                preparedStatement.setString(6, "hostel加盟店");
+                preparedStatement.setString(6, "hostel加盟店" + i);
                 preparedStatement.setString(7, tmpCity.substring(1));
                 preparedStatement.setString(8, "hostel加盟店诚邀您的光临");
                 preparedStatement.setString(9, "approve");
@@ -302,6 +433,12 @@ public class DBConnection {
 
     }
 
+    /**
+     * CST时间转年月日
+     *
+     * @param CST
+     * @return
+     */
     private static String CST2Date(Date CST) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         //java.util.Date对象
@@ -337,12 +474,21 @@ public class DBConnection {
      *
      * @return
      */
-    private static String randomBalanceAndPoint(){
+    private static String randomBalanceAndPoint() {
         double x = Math.random();
-        if (x<0.3){
+        if (x < 0.3) {
             return balance[0];
-        }else{
+        } else {
             return balance[1];
+        }
+    }
+
+    private static String randomCheckState() {
+        double x = Math.random();
+        if (x < 0.98) {
+            return checkState[0];
+        } else {
+            return checkState[1];
         }
     }
 
@@ -352,5 +498,13 @@ public class DBConnection {
     }
 
 
+    private static String randomPayInfo(){
+        double x = Math.random();
+        if (x < 0.3) {
+            return checkoutPayInfo[0];
+        } else {
+            return checkoutPayInfo[1];
+        }
+    }
 }
 

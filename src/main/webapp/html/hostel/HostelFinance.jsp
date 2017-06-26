@@ -32,19 +32,19 @@
     <div class="each_total">
         <img src="../../image/time.svg">
         <div>
-            已加盟<span>15</span>天
+            已加盟<span> </span>天
         </div>
     </div>
     <div class="each_total">
         <img src="../../image/sales.svg">
         <div>
-            总经营额<span>20000</span>元
+            总经营额<span> </span>元
         </div>
     </div>
     <div class="each_total">
         <img src="../../image/trades.svg">
         <div>
-            总入住<span>200</span>人次
+            总入住<span> </span>人次
         </div>
     </div>
 </div>

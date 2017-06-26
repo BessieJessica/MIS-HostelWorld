@@ -36,7 +36,7 @@ function getManagerBar(id, data) {
         },
         series: [
             {
-                name: '线上订单额(百元)',
+                name: '线上订单额(万元)',
                 type: 'bar',
                 stack: '总量',
                 label: {
@@ -48,7 +48,7 @@ function getManagerBar(id, data) {
                 data: sales[0]
             },
             {
-                name: '线下经营额(百元)',
+                name: '线下经营额(万元)',
                 type: 'bar',
                 stack: '总量',
                 label: {

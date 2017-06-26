@@ -32,29 +32,41 @@
     <div class="each_total">
         <img src="../../image/hostels.svg">
         <div>
-            共加盟客栈<span>15</span>个
+            共加盟客栈<span>  </span>个
         </div>
     </div>
     <div class="each_total">
         <img src="../../image/sales.svg">
         <div>
-            总销售额<span>20000</span>元
+            总销售额<span>  </span>元
         </div>
     </div>
     <div class="each_total">
         <img src="../../image/trades.svg">
         <div>
-            总成交量<span>200</span>笔
+            总成交量<span>  </span>笔
         </div>
     </div>
 </div>
 
-<div id="chartDiv" class="chart_div"></div>
+<div id="chartDiv" class="chart_div" style="height: 600px"></div>
+
+<div id="layeredCity" class="chart_div" style="height:400px;width: 400px"></div>
+
+<div id="countryMap" class="chart_div" style="height: 400px"></div>
+
+
 
 <div class="bottom_nav" style="margin-top: 0;">@CopyRight howSure</div>
+
 <script src="../../js/jquery.js"></script>
 <script src="../../js/managerfinance.js"></script>
 <script src="../../js/chart.js"></script>
+<script src="../../js/manager_country.js"></script>
 <script src="../../js/echarts.min.js"></script>
+<script src="../../js/china.js"></script>
+<script src="../../js/manager_layeredcity.js"></script>
+
+
 </body>
 </html>
