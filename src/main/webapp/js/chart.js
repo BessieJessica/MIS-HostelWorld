@@ -11,6 +11,9 @@ function getManagerBar(id, data) {
     var sales = data.sales;
 
     var option = {
+        title: {
+            text: '历史营业额分析图'
+        },
         tooltip: {
             trigger: 'axis',
             axisPointer: {            // 坐标轴指示器，坐标轴触发有效
@@ -18,7 +21,7 @@ function getManagerBar(id, data) {
             }
         },
         legend: {
-            data: ['线上订单额(百元)', '线下经营额(百元)', '订单笔数', '入住人次']
+            data: ['线上订单额(万元)', '线下经营额(万元)','订单笔数']
         },
         grid: {
             top: '10%',
@@ -71,18 +74,18 @@ function getManagerBar(id, data) {
                 },
                 data: sales[2]
             },
-            {
-                name: '入住人次',
-                type: 'bar',
-                stack: '总量',
-                label: {
-                    normal: {
-                        show: true,
-                        position: 'insideRight'
-                    }
-                },
-                data: sales[3]
-            }
+            // {
+            //     name: '入住人次',
+            //     type: 'bar',
+            //     stack: '总量',
+            //     label: {
+            //         normal: {
+            //             show: true,
+            //             position: 'insideRight'
+            //         }
+            //     },
+            //     data: sales[3]
+            // }
         ]
     };
 
@@ -116,7 +119,7 @@ function getHostelBar(id, data) {
         xAxis: [
             {
                 type: 'category',
-                data: ['线上订单额(百元)', '线下经营额(百元)', '订单笔数', '入住人次'],
+                data: ['线上订单额(百元)', '线下经营额(百元)', '订单笔数'],
                 axisTick: {
                     alignWithLabel: true
                 }

@@ -52,6 +52,18 @@
 <%-- 图表 --%>
 <div id="chartDiv" class="chart_div" style="width: 60%; height: 300px;"></div>
 
+<div id="occupyChart" class="chart_div" style="height: 400px; width: 60%"></div>
+
+
+<div id="orderChart" class="chart_div" style="height: 400px"></div>
+
+<div id="memberChart" class="chart_div" style="height: 500px"></div>
+
+
+<div id="benefitChart" class="chart_div" style="height: 400px;"></div>
+
+
+
 <%-- 记录 --%>
 <div id="recordDiv" class="record_div">
 
@@ -99,6 +111,10 @@
 <script src="../../js/hostelfinance.js"></script>
 <script src="../../js/chart.js"></script>
 <script src="../../js/echarts.min.js"></script>
+<script src="../../js/hostel_benefitchart.js"></script>
+<script src="../../js/hostel_occupancy.js"></script>
+<script src="../../js/hostel_orderCount.js"></script>
+<script src="../../js/hostel_memberanalysis.js"></script>
 
 </body>
 </html>

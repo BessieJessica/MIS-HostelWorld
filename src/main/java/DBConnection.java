@@ -28,7 +28,7 @@ public class DBConnection {
     private static int room_tableId = 1;
     private static int myorderId = 1076327;//+1.8w
 
-    private static int checkoutId = 48588;
+    private static int checkoutId = 179578;
 
 
     public Connection getConnection() {
@@ -107,7 +107,7 @@ public class DBConnection {
      * 向checkout表中注入
      */
     public void selectMyorderInfo2checkout() throws ParseException {
-        String sql = "select room, ordertime, userId, checkstate from myorder where hostelId=9 and id>148391";
+        String sql = "select room, ordertime, userId, checkstate from myorder where hostelId=50";
         Connection connection = getConnection();
         try {
             Statement statement = connection.createStatement();
@@ -138,11 +138,11 @@ public class DBConnection {
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, checkoutId+"");
-            preparedStatement.setString(2, "9");
+            preparedStatement.setString(2, "50");
             preparedStatement.setString(3, roomId);
             preparedStatement.setString(4, checkintime);
             preparedStatement.setString(5, checkouttime);
-            preparedStatement.setString(6, random(300,600)+"");
+            preparedStatement.setString(6, random(5000,10000)+"");
             preparedStatement.setString(7,randomPayInfo());
             preparedStatement.setString(8, userId);
             checkoutId++;

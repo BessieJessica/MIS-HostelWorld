@@ -3,16 +3,16 @@
  */
 
 function getlayeredCitySales(id) {
+
     var chart=echarts.init(document.getElementById(id));
 
-    app.title = '城市销售额图';
 
-    option = {
+    var option = {
         title: {
-            top: '50px',
-            text: '全国城市销售额',
+            top:'10px',
+            text: '历年全国城市收益分析',
             subtext:'单位: 十万元',
-            left: 'center',
+            left:'center'
         },
 
         tooltip: {

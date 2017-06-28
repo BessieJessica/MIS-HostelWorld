@@ -49,11 +49,14 @@
     </div>
 </div>
 
-<div id="chartDiv" class="chart_div" style="height: 600px"></div>
+<div id="chartDiv" class="chart_div" style="height: 1100px"></div>
 
-<div id="layeredCity" class="chart_div" style="height:400px;width: 400px"></div>
+<div id="layeredCity" class="chart_div" style="height:400px"></div>
+
+<div id="historyMeanBenefit" class="chart_div" style="height: 500px"></div>
 
 <div id="countryMap" class="chart_div" style="height: 400px"></div>
+
 
 
 
@@ -66,6 +69,7 @@
 <script src="../../js/echarts.min.js"></script>
 <script src="../../js/china.js"></script>
 <script src="../../js/manager_layeredcity.js"></script>
+<script src="../../js/manager_benefit.js"></script>
 
 
 </body>

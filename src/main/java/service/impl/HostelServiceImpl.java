@@ -144,7 +144,8 @@ public class HostelServiceImpl implements HostelService {
             int hosId = Integer.parseInt(info.get(0).toString());
             orderSales.add(orderDao.getOrderPay(hosId));
             orders.add(orderDao.getOrderNum(hosId));
-            checkins.add(checkinDao.getCheckNums(hosId));
+//            checkins.add(checkinDao.getCheckNums(hosId));
+            checkins.add(checkoutDao.getHostelCheckout(hosId));
             double eachsale = checkinDao.getCheckPay(hosId) + checkoutDao.getOutPay(hosId);
             sales.add(eachsale);
         }

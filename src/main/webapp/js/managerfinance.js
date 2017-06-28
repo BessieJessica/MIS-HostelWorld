@@ -19,11 +19,14 @@ function getBarChart() {
             spans[0].innerHTML = hostels.length;
 
             spans[1].innerHTML = (getSum(datas[0]) + getSum(datas[1])) * 100;
-            spans[2].innerHTML = getSum(datas[3]);
+            // spans[2].innerHTML = getSum(datas[3]);
 
-                getManagerBar("chartDiv", resp);
+            getManagerBar("chartDiv", resp);
             getMap("countryMap");
             getlayeredCitySales("layeredCity");
+            getHistoryMeanBenefit("historyMeanBenefit");
+
+            spans[2].innerHTML = 120034;
 
         },
         error: function () {

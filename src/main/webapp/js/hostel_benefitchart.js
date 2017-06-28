@@ -6,10 +6,10 @@ function getHostelBenefit(id){
 
     var chart=echarts.init(document.getElementById(id));
 
-    option = {
+    var option = {
         title: {
             top: '50px',
-            text: '收益分析图',
+            text: '历史总收益分析图',
             subtext:'单位: 十万元',
             left: 'center',
         },
@@ -74,24 +74,30 @@ function getHostelBenefit(id){
             },
             {
                 type: 'radar',
+                tooltip: {
+                    trigger: 'item'
+                },
                 radarIndex: 1,
                 data: [
                     {
-                        value: [85, 90, 90, 100],
+                        value: [85, 89, 87, 98],
                         name: '标准间'
                     },
                     {
-                        value: [100, 100, 100, 90],
+                        value: [97, 99, 96, 97],
                         name: '大床房'
                     },
                     {
-                        value: [55, 70, 65, 80],
+                        value: [57, 73, 65, 82],
                         name: '单人间'
                     }
                 ]
             },
             {
                 type: 'radar',
+                tooltip: {
+                    trigger: 'item'
+                },
                 radarIndex: 2,
                 itemStyle: {normal: {areaStyle: {type: 'default'}}},
                 data: [
@@ -116,5 +122,5 @@ function getHostelBenefit(id){
         ]
     };
 
-
+    chart.setOption(option);
 }

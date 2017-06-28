@@ -27,10 +27,15 @@ function getFinance() {
         url: "/hostel/getHostelFinance",
         success: function (resp) {
             var datas = resp.data;
+            datas[3] = 53193;
             getHostelBar("chartDiv", datas);
+            getHostelBenefit("benefitChart");
+            getOccupy("occupyChart");
+            getOrderCount("orderChart");
+            getMemberChart("memberChart");
 
             var spans = $(".total_div").find("span");
-            spans[1].innerHTML = (datas[0] * 0.8 + datas[1]) * 100;
+            spans[1].innerHTML = ((datas[0] * 0.8 + datas[1]) * 100).toFixed(2);
             spans[2].innerHTML = datas[3];
 
         },
@@ -96,8 +101,11 @@ function setCheckOut(checkOuts) {
         var spans = $(outDiv).find("div");
 
         spans[0].innerHTML = checkOuts[i].checkouttime;
-        var staff = checkOuts[i].checkinstaff.split(";");
-        spans[1].innerHTML = staff[0];
+        if (checkOuts[i].checkinstaff != "") {
+            var staff = checkOuts[i].checkinstaff.split(";");
+            spans[1].innerHTML = staff[0];
+        }
+
         spans[2].innerHTML = "房间号:" + checkOuts[i].roomId;
         if (checkOuts[i].userId != -1) {
             spans[3].innerHTML = "会员";

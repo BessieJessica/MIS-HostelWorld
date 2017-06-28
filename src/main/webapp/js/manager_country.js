@@ -47,7 +47,7 @@ function getMap(id) {
    var option = {
         backgroundColor: '#404a59',
         title: {
-            text: '全国城市销售额 单位（十万元）',
+            text: '2016全国城市收益额 单位（十万元）',
             // subtext: 'data from PM25.in',
             // sublink: 'http://www.pm25.in',
             left: 'center',
